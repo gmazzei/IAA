@@ -164,7 +164,7 @@ testPaths.each do |path|
 end
 
 
-# Create a network with 256 inputs, 2 hidden layers of 15 neurons each, and 3 outputs
+# Create a network with 256 inputs, 2 hidden layers and 3 outputs
 net = Ai4r::NeuralNetwork::Backpropagation.new([256, 200, 50, 3])
 
 # Train the network
