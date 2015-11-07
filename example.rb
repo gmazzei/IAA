@@ -165,11 +165,11 @@ end
 
 
 # Create a network with 256 inputs, 2 hidden layers and 3 outputs
-net = Ai4r::NeuralNetwork::Backpropagation.new([256, 200, 50, 3])
+net = Ai4r::NeuralNetwork::Backpropagation.new([256, 100, 50, 30, 25, 3])
 
 # Train the network
 puts "Training the network, please wait."
-120.times do |i|
+50.times do |i|
   error = []
 
   netDataList.each do |data|
