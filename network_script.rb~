@@ -77,7 +77,7 @@ end
 
 
 ##Create a network with:
-    # 400 inputs
+    # 256 inputs
     # 2 hidden layers
     # 4 outputs
 
