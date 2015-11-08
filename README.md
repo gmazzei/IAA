@@ -27,6 +27,7 @@ echo "gem: --no-document" > ~/.gemrc
 <br/>
 
 2) Instalar Bundler
+<p>Administrador de dependencias.</p>
 <pre>
 gem install bundler
 </pre>
