@@ -18,9 +18,6 @@ net_data_list = []
 pattern_images = Dir["#{Dir.pwd}/input/AAP/*"]
 pattern_images.each do |path|
   image = get_image(path)
-
-
-
   data = DataPattern.new
   data.name = "AAP"
   data.input = image.collect { |input| input.to_f / 10 }
