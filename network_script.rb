@@ -20,7 +20,7 @@ pattern_images.each do |path|
   image = get_image(path)
   data = DataPattern.new
   data.name = "AAP"
-  data.input = image.collect { |input| input.to_f / 10 }
+  data.input = image.collect { |input| input.to_f }
   data.output = [1,0,0,0]
   net_data_list << data
 end
@@ -31,7 +31,7 @@ pattern_images.each do |path|
   image = get_image(path)
   data = DataPattern.new
   data.name = "AT"
-  data.input = image.collect { |input| input.to_f / 10 }
+  data.input = image.collect { |input| input.to_f }
   data.output = [0,1,0,0]
   net_data_list << data
 end
@@ -42,7 +42,7 @@ pattern_images.each do |path|
   image = get_image(path)
   data = DataPattern.new
   data.name = "TF"
-  data.input = image.collect { |input| input.to_f / 10 }
+  data.input = image.collect { |input| input.to_f }
   data.output = [0,0,1,0]
   net_data_list << data
 end
@@ -52,7 +52,7 @@ pattern_images.each do |path|
   image = get_image(path)
   data = DataPattern.new
   data.name = "PR"
-  data.input = image.collect { |input| input.to_f / 10 }
+  data.input = image.collect { |input| input.to_f }
   data.output = [0,0,0,1]
   net_data_list << data
 end
