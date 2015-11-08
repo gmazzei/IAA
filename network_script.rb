@@ -3,6 +3,8 @@ require "ai4r"
 require "rmagick"
 require "yaml"
 include Magick
+load "basic_methods.rb"
+load "data_pattern.rb"
 
 ## Get configuration file
 net_attributes = YAML.load_file("config.yml")
@@ -13,11 +15,14 @@ net_attributes = YAML.load_file("config.yml")
 
 net_data_list = []
 
-pattern_images = Dir["#{Dir.pwd}/input/APP/*"]
+pattern_images = Dir["#{Dir.pwd}/input/AAP/*"]
 pattern_images.each do |path|
   image = get_image(path)
+
+
+
   data = DataPattern.new
-  data.name = "APP"
+  data.name = "AAP"
   data.input = image.collect { |input| input.to_f / 10 }
   data.output = [1,0,0,0]
   net_data_list << data
@@ -60,7 +65,7 @@ end
 
 testing_data_list = []
 
-testing_images = Dir["#{Dir.pwd}/test_images/*"]
+testing_images = Dir["#{Dir.pwd}/test/*"]
 testing_images.each do |path|
   image = get_image(path)
   data = DataPattern.new
@@ -79,8 +84,8 @@ end
 net = Ai4r::NeuralNetwork::Backpropagation.new(net_attributes["layers"])
 
 net.set_parameters( 
-    :momentum => net_attributes[:momentum], 
-    :learning_rate => net_attributes[:learning_rate],
+    :momentum => net_attributes["momentum"], 
+    :learning_rate => net_attributes["learning_rate"],
     :propagation_function =>  lambda { |x| 1/(1+Math.exp(-1*(x))) },
     :derivative_propagation_function => lambda { |y| y*(1-y) }
 )
@@ -97,13 +102,12 @@ iterations.times do |i|
   error = []
 
   net_data_list.each do |data|
-    error << net.train(data[:input], data[:output])
+    error << net.train(data.input, data.output)
   end
 
   puts "Error after iteration #{i}: \t #{error.max}" if i%10 == 0
 end
 puts "Done!"
-
 
 
 ## Testing network

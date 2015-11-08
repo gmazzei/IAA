@@ -1,4 +1,4 @@
-training_iterations: 50
-layers: [256, 50, 50, 4]
+training_iterations: 100
+layers: [400, 50, 50, 4]
 momentum: 0.1
 learning_rate: 0.25
