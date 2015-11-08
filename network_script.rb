@@ -3,8 +3,8 @@ require "ai4r"
 require "rmagick"
 require "yaml"
 include Magick
-load "basic_methods.rb"
-load "data_pattern.rb"
+load "others/basic_methods.rb"
+load "others/data_pattern.rb"
 
 ## Get configuration file
 net_attributes = YAML.load_file("config.yml")
