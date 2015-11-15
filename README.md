@@ -53,7 +53,14 @@ gem install ai4r
 
 --
 
-###Ejecutar script
+###Testear RNA
+<p>Inicializa los pesos de las neuronas según weights.txt</p>
 <pre>
-ruby network_script.rb
+ruby network_test.rb
+</pre>
+
+###Entrenar RNA
+<p>Entrena y guarda los pesos en weights.txt</p>
+<pre>
+ruby network_train.rb
 </pre>
