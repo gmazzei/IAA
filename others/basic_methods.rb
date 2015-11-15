@@ -1,4 +1,4 @@
-N = 20 # Image size. For example, N = 30 means 30x30 pixel array.
+N = 16 # Image size. For example, N = 16 means a 16x16 pixel array.
 
 def get_image(path)
 
@@ -12,13 +12,7 @@ def get_image(path)
       one_pixel = thumb.pixel_color(y, x)
       rgb_value = Math.sqrt( (one_pixel.red/(2**8))**2 + (one_pixel.green/(2**8))**2 + (one_pixel.blue/(2**8))**2 )  #Distancia euclidiana
 
-      if rgb_value > 50
-        value = 1
-      else
-        value = 0
-      end
-
-      pixel_list << value
+      pixel_list << rgb_value
     end
   end
 
@@ -26,7 +20,7 @@ def get_image(path)
 end
 
 
-  
+
 def result_label(results)
   pattern_names = ["AAP", "AT", "TF", "PR"]
   max_value_index = results.rindex(results.max)

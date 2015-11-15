@@ -6,7 +6,7 @@ include Magick
 load "others/basic_methods.rb"
 load "others/data_pattern.rb"
 
-## Get configuration file
+## Obtaining configuration file
 net_attributes = YAML.load_file("config.yml")
 
 
@@ -58,24 +58,12 @@ pattern_images.each do |path|
 end
 
 
-## Unknown data for testing
-
-testing_data_list = []
-
-testing_images = Dir["#{Dir.pwd}/test/*"]
-testing_images.each do |path|
-  image = get_image(path)
-  data = DataPattern.new
-  data.input = image.collect { |input| input.to_f / 10 }
-  testing_data_list << data
-end
 
 
-
-
-##Create a network with:
-    # 400 inputs
-    # 2 hidden layers
+##Creating the network with:
+    # 256 inputs
+    # 1 hidden layer with 200 neurons
+    # 1 hidden layer with 15 neurons
     # 4 outputs
 
 net = Ai4r::NeuralNetwork::Backpropagation.new(net_attributes["layers"])
@@ -83,7 +71,7 @@ net = Ai4r::NeuralNetwork::Backpropagation.new(net_attributes["layers"])
 net.set_parameters( 
     :momentum => net_attributes["momentum"], 
     :learning_rate => net_attributes["learning_rate"],
-    :propagation_function =>  lambda { |x| 1/(1+Math.exp(-1*(x))) },
+    :propagation_function =>  lambda { |x| 1/(1+Math.exp(-1*(x))) }, # Sigmoid function
     :derivative_propagation_function => lambda { |y| y*(1-y) }
 )
 
@@ -107,18 +95,14 @@ end
 puts "Done!"
 
 
+## Saving weights in weights.txt
+save_weights(net.weights)
+
+
 ## Testing network
 
-puts "Testing the net"
-puts "Testing the same data used for training:"
+puts "Testing with the data used for training:"
 net_data_list.each do |data|
   output = net.eval(data.input)
-  puts "Pattern: #{data.name} \t - Result: #{output.inspect} => #{result_label(output)}"
-end
-
-
-puts "Testing with unknown input:"
-testing_data_list.each do |data|
-  output = net.eval(data.input)
-  puts "Result: #{output.inspect} => \t #{result_label(output)}"
+  puts "Pattern: #{data.name} \t=>\t Result: #{result_label(output)}"
 end
