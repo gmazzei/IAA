@@ -2,6 +2,7 @@ require "rubygems"
 require "ai4r"
 require "rmagick"
 require "yaml"
+require "pathname"
 include Magick
 load "others/basic_methods.rb"
 load "others/data_pattern.rb"
@@ -19,7 +20,7 @@ testing_images = Dir["#{Dir.pwd}/test/*"]
 testing_images.each do |path|
   image = get_image(path)
   data = DataPattern.new
-  data.name = path
+  data.name = Pathname.new(path).basename
   data.input = image.collect { |input| input.to_f / 10 }
   testing_data_list << data
 end
